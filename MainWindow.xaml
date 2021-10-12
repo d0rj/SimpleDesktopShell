@@ -6,8 +6,11 @@
         mc:Ignorable="d"
         Title="Simple Desktop Shell"
 		WindowStyle="None"
-		WindowState="Maximized">
+		WindowState="Maximized"
+		ResizeMode="NoResize"
+		ShowInTaskbar="False"
+		Closing="Window_Closing">
     <Grid>
-
-    </Grid>
+		<Button x:Name="CloseButton" Content="Закрыть" Width="100" Height="50" Click="CloseButton_Click" />
+	</Grid>
 </Window>

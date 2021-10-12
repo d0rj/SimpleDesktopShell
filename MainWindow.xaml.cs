@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
+
+using SimpleDesktopShell.Security;
 
 
 namespace SimpleDesktopShell
@@ -8,19 +11,27 @@ namespace SimpleDesktopShell
 	{
 		public MainWindow()
 		{
+			TaskManager.SetEnabled(false);
+
 			InitializeComponent();
 
 			PreviewKeyDown += (object sender, KeyEventArgs e) =>
 			{
-				if (e.Key == Key.Escape)
-				{
-					Close();
-				}
-				if (e.Key == Key.System && e.SystemKey == Key.F4)
+				if (e.Key == Key.System)
 				{
 					e.Handled = true;
 				}
 			};
+		}
+
+		private void Window_Closing(object sender, CancelEventArgs e)
+		{
+			TaskManager.SetEnabled(true);
+		}
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
+			Close();
 		}
 	}
 }
