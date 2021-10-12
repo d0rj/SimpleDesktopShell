@@ -11,6 +11,7 @@ namespace SimpleDesktopShell
 	{
 		public MainWindow()
 		{
+			Taskbar.Hide();
 			TaskManager.SetEnabled(false);
 
 			InitializeComponent();
@@ -27,6 +28,7 @@ namespace SimpleDesktopShell
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
 			TaskManager.SetEnabled(true);
+			Taskbar.Show();
 		}
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
