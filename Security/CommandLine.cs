@@ -1,25 +1,9 @@
-﻿using Microsoft.Win32;
-
-
-namespace SimpleDesktopShell.Security
+﻿namespace SimpleDesktopShell.Security
 {
-	public class CommandLine
+	public sealed class CommandLine : RegistryTweak
 	{
-		private const string RegisterKeyPath = @"Software\Policies\Microsoft\Windows";
-
-		public static void SetEnabled(bool isEnabled)
-		{
-			using RegistryKey objRegistryKey =
-				Registry.CurrentUser.CreateSubKey(RegisterKeyPath);
-
-			if (isEnabled && objRegistryKey.GetValue("DisableCMD") != null)
-			{
-				objRegistryKey.DeleteValue("DisableCMD");
-			}
-			else
-			{
-				objRegistryKey.SetValue("DisableCMD", "2");
-			}
-		}
+		protected override string RegisterKeyPath { get; init; } = @"Software\Policies\Microsoft\Windows";
+		protected override string ValueName { get; init; } = "DisableCMD";
+		protected override object EnableValue { get; init; } = "2";
 	}
 }

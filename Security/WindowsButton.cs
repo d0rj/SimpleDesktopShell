@@ -8,32 +8,11 @@ using System.Threading.Tasks;
 
 namespace SimpleDesktopShell.Security
 {
-	public class WindowsButton
+	public sealed class WindowsButton : RegistryTweak
 	{
-		private const string RegisterKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
-
-		public static void SetEnabled(bool isEnabled)
-		{
-
-			using RegistryKey localMachine = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-
-			var reg = localMachine.OpenSubKey(RegisterKeyPath, true);
-			if (reg == null)
-			{
-				reg = localMachine.CreateSubKey(RegisterKeyPath);
-			}
-			reg.Dispose();
-
-			using RegistryKey objRegistryKey =
-				Registry.CurrentUser.CreateSubKey(RegisterKeyPath);
-			if (isEnabled && objRegistryKey.GetValue("NoWinKeys") != null)
-			{
-				objRegistryKey.DeleteValue("NoWinKeys");
-			}
-			else
-			{
-				objRegistryKey.SetValue("NoWinKeys", "1");
-			}
-		}
+		protected override string RegisterKeyPath { get; init; } =
+			@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
+		protected override string ValueName { get; init; } = "NoWinKeys";
+		protected override object EnableValue { get; init; } = "1";
 	}
 }

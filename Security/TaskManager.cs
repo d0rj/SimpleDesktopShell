@@ -1,25 +1,10 @@
-﻿using Microsoft.Win32;
-
-
-namespace SimpleDesktopShell.Security
+﻿namespace SimpleDesktopShell.Security
 {
-	public static class TaskManager
+	public sealed class TaskManager : RegistryTweak
 	{
-		private const string RegisterKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Policies\System";
-
-		public static void SetEnabled(bool isEnabled)
-		{
-			using RegistryKey objRegistryKey =
-				Registry.CurrentUser.CreateSubKey(RegisterKeyPath);
-
-			if (isEnabled && objRegistryKey.GetValue("DisableTaskMgr") != null)
-			{
-				objRegistryKey.DeleteValue("DisableTaskMgr");
-			}
-			else
-			{
-				objRegistryKey.SetValue("DisableTaskMgr", "1");
-			}
-		}
+		protected override string RegisterKeyPath { get; init; } =
+			@"Software\Microsoft\Windows\CurrentVersion\Policies\System";
+		protected override string ValueName { get; init; } = "DisableTaskMgr";
+		protected override object EnableValue { get; init; } = 1;
 	}
 }

@@ -10,13 +10,16 @@ namespace SimpleDesktopShell
 	public sealed partial class MainWindow : Window
 	{
 		private readonly ITweak hideTaskbar = new TaskbarDisabler();
+		private readonly ITweak cmdDisabler = new CommandLine();
+		private readonly ITweak disableTaskManager = new TaskManager();
+		private readonly ITweak disableWindows = new WindowsButton();
 
 		public MainWindow()
 		{
 			hideTaskbar.Enable();
-			TaskManager.SetEnabled(false);
-			WindowsButton.SetEnabled(false);
-			CommandLine.SetEnabled(false);
+			disableTaskManager.Enable();
+			disableWindows.Enable();
+			cmdDisabler.Enable();
 
 			InitializeComponent();
 
@@ -31,9 +34,9 @@ namespace SimpleDesktopShell
 
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
-			TaskManager.SetEnabled(true);
-			WindowsButton.SetEnabled(true);
-			CommandLine.SetEnabled(true);
+			disableTaskManager.Disable();
+			disableWindows.Disable();
+			cmdDisabler.Disable();
 			hideTaskbar.Disable();
 		}
 
