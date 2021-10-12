@@ -3,7 +3,7 @@
 
 namespace SimpleDesktopShell.Security
 {
-	public class Taskbar
+	public sealed class TaskbarDisabler : ITweak
 	{
 		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
 		private static extern int FindWindow(string className, string windowText);
@@ -13,18 +13,14 @@ namespace SimpleDesktopShell.Security
 		private const int SW_HIDE = 0;
 		private const int SW_SHOW = 1;
 
-		protected static int Handle => FindWindow("Shell_TrayWnd", "");
+		private static int Handle => FindWindow("Shell_TrayWnd", "");
 
-		private Taskbar() { }
-
-		public static void Show()
+		public void SetEnabled(bool isEnabled)
 		{
-			_ = ShowWindow(Handle, SW_SHOW);
-		}
-
-		public static void Hide()
-		{
-			_ = ShowWindow(Handle, SW_HIDE);
+			if (isEnabled)
+				_ = ShowWindow(Handle, SW_HIDE);
+			else
+				_ = ShowWindow(Handle, SW_SHOW);
 		}
 	}
 }
