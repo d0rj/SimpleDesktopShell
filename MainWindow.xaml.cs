@@ -13,9 +13,9 @@ namespace SimpleDesktopShell
 		private readonly IEnumerable<ITweak> tweaks = new List<ITweak>()
 		{
 			new TaskbarDisabler(),
-			new CommandLine(),
-			new TaskManager(),
-			new WindowsButton(),
+			new CommandLineDisabler(),
+			new TaskManagerDisabler(),
+			new WindowsButtonDisabler(),
 		};
 
 		public MainWindow()

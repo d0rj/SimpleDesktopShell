@@ -1,6 +1,6 @@
 ﻿namespace SimpleDesktopShell.Security
 {
-	public sealed class TaskManager : SetRegistryTweak
+	public sealed class TaskManagerDisabler : SetRegistryTweak
 	{
 		protected override string RegisterKeyPath { get; init; } =
 			@"Software\Microsoft\Windows\CurrentVersion\Policies\System";

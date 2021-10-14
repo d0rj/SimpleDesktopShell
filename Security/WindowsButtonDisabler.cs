@@ -1,6 +1,6 @@
 ﻿namespace SimpleDesktopShell.Security
 {
-	public sealed class WindowsButton : SetRegistryTweak
+	public sealed class WindowsButtonDisabler : SetRegistryTweak
 	{
 		protected override string RegisterKeyPath { get; init; } =
 			@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
