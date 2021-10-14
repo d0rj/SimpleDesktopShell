@@ -7,9 +7,9 @@ namespace SimpleDesktopShell.Security
 	{
 		protected abstract string RegisterKeyPath { get; init; }
 		protected abstract string ValueName { get; init; }
-		protected abstract object EnableValue { get; init; }
+		protected abstract object FillValue { get; init; }
 
-		private void CreatePathIfNotExists()
+		protected void CreatePathIfNotExists()
 		{
 			using RegistryKey localMachine = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
 
@@ -21,20 +21,6 @@ namespace SimpleDesktopShell.Security
 			reg.Dispose();
 		}
 
-		public void SetEnabled(bool isEnabled)
-		{
-			CreatePathIfNotExists();
-			using RegistryKey objRegistryKey =
-				Registry.CurrentUser.CreateSubKey(RegisterKeyPath);
-
-			if (isEnabled && objRegistryKey.GetValue(ValueName) != null)
-			{
-				objRegistryKey.DeleteValue(ValueName);
-			}
-			else
-			{
-				objRegistryKey.SetValue(ValueName, EnableValue);
-			}
-		}
+		public abstract void SetEnabled(bool isEnabled);
 	}
 }
