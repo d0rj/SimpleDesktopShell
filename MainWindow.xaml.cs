@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,17 +10,18 @@ namespace SimpleDesktopShell
 {
 	public sealed partial class MainWindow : Window
 	{
-		private readonly ITweak hideTaskbar = new TaskbarDisabler();
-		private readonly ITweak cmdDisabler = new CommandLine();
-		private readonly ITweak disableTaskManager = new TaskManager();
-		private readonly ITweak disableWindows = new WindowsButton();
+		private readonly IEnumerable<ITweak> tweaks = new List<ITweak>()
+		{
+			new TaskbarDisabler(),
+			new CommandLine(),
+			new TaskManager(),
+			new WindowsButton(),
+		};
 
 		public MainWindow()
 		{
-			hideTaskbar.Enable();
-			disableTaskManager.Enable();
-			disableWindows.Enable();
-			cmdDisabler.Enable();
+			foreach (ITweak tweak in tweaks)
+				tweak.Enable();
 
 			InitializeComponent();
 
@@ -34,10 +36,8 @@ namespace SimpleDesktopShell
 
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
-			disableTaskManager.Disable();
-			disableWindows.Disable();
-			cmdDisabler.Disable();
-			hideTaskbar.Disable();
+			foreach (ITweak tweak in tweaks)
+				tweak.Disable();
 		}
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
