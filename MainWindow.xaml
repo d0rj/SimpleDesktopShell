@@ -11,6 +11,42 @@
 		ShowInTaskbar="False"
 		Closing="Window_Closing">
     <Grid>
-		<Button x:Name="CloseButton" Content="Закрыть" Width="100" Height="50" Click="CloseButton_Click" />
+		<Grid.Resources>
+			<Style TargetType="{x:Type TextBlock}">
+				<Setter Property="FontFamily" Value="Organetto Regular" />
+			</Style>
+		</Grid.Resources>
+		<Grid.Background>
+			<ImageBrush ImageSource="/Images/cover_x4.jpg" Stretch="UniformToFill" />
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" MaxHeight="50" MinHeight="50" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<StackPanel Grid.Row="0" Grid.Column="1"
+					Orientation="Horizontal" FlowDirection="RightToLeft"
+					HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="5" >
+			<StackPanel.Resources>
+				<Style TargetType="{x:Type Button}">
+					<Setter Property="Margin" Value="0,0,5,0" />
+					<Setter Property="Width" Value="30" />
+					<Setter Property="Height" Value="30" />
+					<Setter Property="BorderBrush" Value="#3F707070" />
+					<Setter Property="Background" Value="#55DDDDDD" />
+					<Setter Property="Foreground" Value="AliceBlue" />
+				</Style>
+			</StackPanel.Resources>
+			<Button x:Name="CloseButton" Content="✖️" Click="CloseButton_Click" />
+			<Button x:Name="CloseButton1" Content="⚙" />
+		</StackPanel>
+		<TextBlock Grid.Row="0" Grid.Column="0"
+				   Text="Главная" FontSize="22" Foreground="AliceBlue"
+				   VerticalAlignment="Center" HorizontalAlignment="Left"
+				   Margin="50,0,0,0" />
 	</Grid>
 </Window>
