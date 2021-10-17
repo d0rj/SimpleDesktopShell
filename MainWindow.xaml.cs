@@ -4,27 +4,30 @@ using System.Windows;
 using System.Windows.Input;
 
 using SimpleDesktopShell.Security;
+using SimpleDesktopShell.Security.Tweaks;
 
 
 namespace SimpleDesktopShell
 {
 	public sealed partial class MainWindow : Window
 	{
-		private readonly IEnumerable<ITweak> tweaks = new List<ITweak>()
+		private readonly ITweak tweaks = new Tweaker 
 		{
-			new TaskbarDisabler(),
-			new CommandLineDisabler(),
-			new TaskManagerDisabler(),
-			new WindowsButtonDisabler(),
+			BeforeReloadTweaks = new List<ITweak> 
+			{
+				new WindowsButtonDisabler(),
+				new CommandLineDisabler(),
+			},
+			AfterReloadTweaks = new List<ITweak>
+			{
+				new TaskbarDisabler(),
+				new TaskManagerDisabler(),
+			},
 		};
 
 		public MainWindow()
 		{
-			foreach (ITweak tweak in tweaks)
-			{
-				tweak.Enable();
-			}
-			Explorer.Reload();
+			tweaks.Enable();
 
 			InitializeComponent();
 
@@ -39,11 +42,7 @@ namespace SimpleDesktopShell
 
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
-			foreach (ITweak tweak in tweaks)
-			{
-				tweak.Disable();
-			}
-			Explorer.Reload();
+			tweaks.Disable();
 		}
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)

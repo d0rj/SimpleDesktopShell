@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
 
-namespace SimpleDesktopShell.Security
+namespace SimpleDesktopShell.Security.Tweaks
 {
 	public sealed class TaskbarDisabler : ITweak
 	{

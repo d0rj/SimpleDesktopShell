@@ -1,4 +1,4 @@
-﻿namespace SimpleDesktopShell.Security
+﻿namespace SimpleDesktopShell.Security.Tweaks
 {
 	public sealed class CommandLineDisabler : SetRegistryTweak
 	{
