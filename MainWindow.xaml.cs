@@ -24,6 +24,7 @@ namespace SimpleDesktopShell
 			{
 				tweak.Enable();
 			}
+			Explorer.Reload();
 
 			InitializeComponent();
 
@@ -42,6 +43,7 @@ namespace SimpleDesktopShell
 			{
 				tweak.Disable();
 			}
+			Explorer.Reload();
 		}
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
