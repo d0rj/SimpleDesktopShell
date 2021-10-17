@@ -21,7 +21,9 @@ namespace SimpleDesktopShell
 		public MainWindow()
 		{
 			foreach (ITweak tweak in tweaks)
+			{
 				tweak.Enable();
+			}
 
 			InitializeComponent();
 
@@ -37,7 +39,9 @@ namespace SimpleDesktopShell
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
 			foreach (ITweak tweak in tweaks)
+			{
 				tweak.Disable();
+			}
 		}
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
