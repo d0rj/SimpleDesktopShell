@@ -24,12 +24,12 @@ namespace SimpleDesktopShell.Security
 			}
 			else
 			{
-				foreach (ITweak tweak in AfterReloadTweaks)
+				foreach (ITweak tweak in BeforeReloadTweaks)
 				{
 					tweak.Disable();
 				}
 				Explorer.Reload();
-				foreach (ITweak tweak in BeforeReloadTweaks)
+				foreach (ITweak tweak in AfterReloadTweaks)
 				{
 					tweak.Disable();
 				}
