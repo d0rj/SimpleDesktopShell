@@ -7,8 +7,10 @@ using System.Threading;
 
 namespace SimpleDesktopShell
 {
+	/// <summary> Utils functions for work with Windows Explorer </summary>
 	public static class Explorer
 	{
+		/// <summary> Reload default system Explorer without opened window </summary>
 		public static void Reload()
 		{
 			foreach (Process proc in Process.GetProcessesByName("explorer"))
