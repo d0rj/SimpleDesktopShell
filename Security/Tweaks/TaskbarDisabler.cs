@@ -3,6 +3,7 @@
 
 namespace SimpleDesktopShell.Security.Tweaks
 {
+	/// <summary> Tweak which can disable Windows Taskbar </summary>
 	public sealed class TaskbarDisabler : ITweak
 	{
 		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
