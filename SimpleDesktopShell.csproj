@@ -8,6 +8,7 @@
     <StartupObject>SimpleDesktopShell.App</StartupObject>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
