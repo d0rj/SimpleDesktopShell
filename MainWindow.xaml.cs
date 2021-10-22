@@ -11,9 +11,9 @@ namespace SimpleDesktopShell
 {
 	public sealed partial class MainWindow : Window
 	{
-		private readonly ITweak tweaks = new Tweaker 
+		private readonly ITweak tweaks = new Tweaker
 		{
-			BeforeReloadTweaks = new List<ITweak> 
+			BeforeReloadTweaks = new List<ITweak>
 			{
 				new WindowsButtonDisabler(),
 				new CommandLineDisabler(),
